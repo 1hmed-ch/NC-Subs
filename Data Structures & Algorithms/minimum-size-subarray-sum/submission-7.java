@@ -1,0 +1,27 @@
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int minValue = Integer.MAX_VALUE;
+        int sum = 0;
+
+        int left = 0;
+        int right = 1;
+        sum = nums[left];
+        while(right <= nums.length){
+            if(sum < target){
+                if(right < nums.length)
+                    sum += nums[right];
+                right++;
+            }
+            else {
+                sum -= nums[left];
+                minValue = Math.min(minValue, right - left);
+                left++;
+            }
+        }
+
+        return minValue == Integer.MAX_VALUE ? 0 : minValue;
+
+
+        
+    }
+}
